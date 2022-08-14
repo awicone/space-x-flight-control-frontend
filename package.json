@@ -8,7 +8,10 @@
   "license": "MIT",
   "scripts": {
     "start": "webpack serve --port 3000",
-    "build": "NODE_ENV=production webpack"
+    "build": "NODE_ENV=production webpack",
+    "lint": "eslint --fix --ext .js,.jsx,.tsx,ts .",
+    "lint:fix": "npm run lint -- --fix",
+    "prettier": "prettier --write ."
   },
   "devDependencies": {
     "@babel/core": "^7.18.10",
@@ -19,11 +22,18 @@
     "@babel/preset-typescript": "^7.18.6",
     "@types/react": "^18.0.17",
     "@types/react-dom": "^18.0.6",
+    "@typescript-eslint/eslint-plugin": "^5.33.0",
+    "@typescript-eslint/parser": "^5.33.0",
     "babel-core": "^6.26.3",
     "babel-loader": "^8.2.5",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
     "css-loader": "^6.7.1",
+    "eslint": "^8.22.0",
+    "eslint-loader": "^4.0.2",
+    "eslint-plugin-react": "^7.30.1",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-webpack-plugin": "^3.2.0",
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.5.0",
     "style-loader": "^3.3.1",
@@ -34,6 +44,8 @@
     "webpack-dev-server": "^4.10.0"
   },
   "dependencies": {
+    "normalize.css": "^8.0.1",
+    "prettier": "^2.7.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.3.0"
