@@ -5,9 +5,8 @@ interface LaunchImageProps {
   className?: string
 }
 const LaunchImage = ({ icon, className }: LaunchImageProps) => {
-  if (icon) return <img className={className} src={icon} alt={'launch patch'}/>;
-  else
-    return <span className={className}>🚀</span>;
+  return icon ? <img className={className} src={icon} alt={'launch patch'}/> :
+    <span className={className}>🚀</span>;
 };
 
 export default LaunchImage;

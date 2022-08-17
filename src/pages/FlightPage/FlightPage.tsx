@@ -7,7 +7,7 @@ import { Launch } from '../../types/Lounch';
 import LaunchImage from '../../components/LaunchImage/LaunchImage';
 
 const FlightPage = () => {
-  const param: any = useParams();
+  const { id } = useParams<{ id: string }>();
   const [dataFetched, setDataFetched] = useState<boolean>(false);
   const [flight, setFlight] = useState<Launch>({
     id: '',
@@ -26,14 +26,21 @@ const FlightPage = () => {
   });
 
   useEffect(() => {
+    if (!id) {
+      return;
+    }
+
     const getFlight = async () => {
-      const flightResponse = await api.launch.request(param.id);
+      const flightResponse = await api.launch.request(id);
       setFlight(flightResponse.data);
     };
+
     getFlight();
+
     setTimeout(() => {
       setDataFetched(true);
     }, 1000);
+
   }, []);
 
   const { Title, Paragraph, Text } = Typography;
