@@ -7,6 +7,7 @@ export type CardInfo = {
   success: boolean | null,
   date_local: string,
   status: LaunchStatus,
+  order: number,
+  icon: string | null,
   loading?: boolean,
-  order: number
 }

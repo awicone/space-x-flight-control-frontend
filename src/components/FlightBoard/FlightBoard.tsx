@@ -58,6 +58,7 @@ const FlightBoard = ({ data, title, status, onChange, loading }: FlightBoardProp
         order={item.order}
         status={status}
         loading={loading}
+        icon={item.links?.patch.small}
       />
     ));
   };

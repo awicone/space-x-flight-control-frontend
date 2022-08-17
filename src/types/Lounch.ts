@@ -7,5 +7,11 @@ export type Launch = {
   details: string,
   success: boolean | null,
   date_local: string,
-  status: LaunchStatus
+  status: LaunchStatus,
+  links: {
+    patch: {
+      large: string | null,
+      small: string | null
+    }
+  }
 }

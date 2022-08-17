@@ -25,7 +25,13 @@ export const initialLaunches: Launches = {
       details: '',
       success: true,
       date_local: '',
-      status: 'ended'
+      status: 'ended',
+      links: {
+        patch: {
+          large: '',
+          small: ''
+        }
+      }
     }
   ],
   upcoming: [
@@ -36,8 +42,13 @@ export const initialLaunches: Launches = {
       details: '',
       success: true,
       date_local: '',
-      status: 'upcoming'
-
+      status: 'upcoming',
+      links: {
+        patch: {
+          large: '',
+          small: ''
+        }
+      }
     }
   ],
   reserved: [
@@ -48,7 +59,13 @@ export const initialLaunches: Launches = {
       details: '',
       success: true,
       date_local: '',
-      status: 'reserved'
+      status: 'reserved',
+      links: {
+        patch: {
+          large: '',
+          small: ''
+        }
+      }
     }
   ]
 };

@@ -1,4 +1,4 @@
-import backend from './axios';
+import { backend, jsonServer } from './axios';
 import { AxiosResponse } from 'axios';
 import { Launch } from '../types/Lounch';
 
@@ -7,7 +7,8 @@ const urls = {
     past: '/past',
     upcoming: '/upcoming'
   },
-  launch: '/launches/'
+  launch: '/launches/',
+  booking: '/reserved'
 };
 
 export const api = {
@@ -37,11 +38,42 @@ export const api = {
     }
   },
   launch: {
-    request: async (id: string): Promise<AxiosResponse<Launch[]>> => {
+    request: async (id: string): Promise<AxiosResponse<Launch>> => {
       try {
         return await backend.get(id);
       } catch (error: any) {
         return error.response as AxiosResponse;
+      }
+    }
+  },
+  bookings: {
+    myBooking: {
+      request: async (): Promise<AxiosResponse<Launch[]>> => {
+        try {
+          return await jsonServer.get(urls.booking);
+        } catch (error: any) {
+          return error.response as AxiosResponse;
+        }
+      }
+    },
+    book: {
+      request: async (id: string): Promise<AxiosResponse<boolean>> => {
+        try {
+          return await jsonServer.post(urls.booking, {
+            id
+          });
+        } catch (error: any) {
+          return error.response as AxiosResponse;
+        }
+      }
+    },
+    cancelBooking: {
+      request: async (id: string): Promise<AxiosResponse<boolean>> => {
+        try {
+          return await jsonServer.delete(`${urls.booking}/${id}`);
+        } catch (error: any) {
+          return error.response as AxiosResponse;
+        }
       }
     }
   }

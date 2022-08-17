@@ -3,11 +3,12 @@ import s from './FlightCard.module.scss';
 import { Badge, Skeleton } from 'antd';
 import { CardInfo } from '../../types/CardInfo';
 import { useNavigate } from 'react-router-dom';
+import LaunchImage from '../LaunchImage/LaunchImage';
 
-const FlightCard = ({ id, name, success, details, date_local, status, loading }: CardInfo) => {
+const FlightCard = ({ id, name, success, details, date_local, status, loading, icon }: CardInfo) => {
   const [onHold, setOnHold] = useState(false);
   const navigate = useNavigate();
-  console.log(success);
+
   const dragStartHandler = (e: any) => {
     e.dataTransfer.setData('cardInfo', JSON.stringify({ id, status }));
     e.target.className += ' ohhold';
@@ -70,7 +71,10 @@ const FlightCard = ({ id, name, success, details, date_local, status, loading }:
       onClick={onClickHandler}
     >
       {loading ? <Skeleton className={s.skeleton} active /> : <>
-        <div className="cardTitle">{name}</div>
+        <div className="cardTitle">
+          {name}
+          <LaunchImage icon={icon} className={s.cardPatch}/>
+        </div>
         <div className="cardFooter">
           {details ? <div className={s.details}>{details}</div> :
             status === 'upcoming' ? 'Awaiting for flight' :
@@ -95,7 +99,8 @@ const FlightCard = ({ id, name, success, details, date_local, status, loading }:
               </>}
             </span>
           </div>
-        </div></>}
+        </div>
+      </>}
 
     </div>
   );

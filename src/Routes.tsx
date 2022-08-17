@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import routes from './components/Router/routes';
 import FlightPage from './pages/FlightPage/FlightPage';
 import FlightControlDashboard from './pages/FlightControlDashboard/FlightControlDashboard';
@@ -9,12 +9,8 @@ export const AppRoutes = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Page><FlightControlDashboard /></Page>} />
-        <Route path="flight/:id" element={<Page><FlightPage /></Page>} />
-        <Route
-          path="*"
-          element={<Navigate to={routes.index} replace />}
-        />
+        <Route path={routes.index} element={<Page><FlightControlDashboard /></Page>} />
+        <Route path={`${routes.flight}/:id`} element={<Page><FlightPage /></Page>} />
       </Routes>
     </BrowserRouter>
 
