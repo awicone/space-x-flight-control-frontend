@@ -1,0 +1,15 @@
+.details {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cardFooter {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+
+.skeleton {
+  width: 33vw;
+}

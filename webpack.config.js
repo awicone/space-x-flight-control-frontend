@@ -1,5 +1,5 @@
+const Dotenv = require('dotenv-webpack');
 const prod = process.env.NODE_ENV === 'production';
-
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ESLintPlugin = require('eslint-webpack-plugin');
 
@@ -7,7 +7,9 @@ module.exports = {
   mode: prod ? 'production' : 'development',
   entry: './src/index.tsx',
   output: {
-    path: __dirname + '/dist/'
+    path: __dirname + '/dist/',
+    filename: 'index_bundle.js',
+    publicPath: '/'
   },
   resolve: {
     extensions: ['.tsx', '.ts', '.js']
@@ -34,7 +36,7 @@ module.exports = {
       },
       {
         test: /\.(css|scss)$/,
-        use: ['style-loader', 'css-loader']
+        use: ['style-loader', 'css-loader', 'sass-loader']
       },
       {
         test: /\.(jpg|jpeg|png|gif|svg)$/,
@@ -43,10 +45,14 @@ module.exports = {
     ]
   },
   devtool: prod ? undefined : 'source-map',
+  devServer: {
+    historyApiFallback: true
+  },
   plugins: [
     new HtmlWebpackPlugin({
       template: 'index.html'
     }),
-    new ESLintPlugin()
+    new ESLintPlugin(),
+    new Dotenv()
   ]
 };

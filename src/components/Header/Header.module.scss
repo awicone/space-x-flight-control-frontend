@@ -1,0 +1,21 @@
+.headerContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem;
+  max-width: 1200px;
+  margin: auto auto 2rem;
+}
+
+.headerTitle {
+  margin: 0 1rem 0 0;
+}
+
+.globalIcon {
+  font-size: 32px;
+}
+
+.homeIcon {
+  font-size: 32px;
+  margin-right: 1rem;
+}

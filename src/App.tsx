@@ -1,11 +1,11 @@
 import React from 'react';
 import s from './App.module.css';
+import { AppRoutes } from './Routes';
 
 const App = () => {
   return (
     <div className={s.container}>
-      <h1>Hello!!</h1>
-      <h2>Welcome to SpaceX flying control center..!</h2>
+      <AppRoutes />
     </div>
   );
 };
