@@ -8,7 +8,7 @@ const Header = () => {
   const navigate = useNavigate();
   return (
     <div className={s.headerContainer}>
-      <HomeOutlined className={s.homeIcon} onClick={() => navigate(routes.index)}/>
+      <HomeOutlined className={s.homeIcon} onClick={() => navigate(routes.index)} />
       <div className={s.headerCenter}>
         <h1 className={s.headerTitle}>Explore the space</h1>
       </div>

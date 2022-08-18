@@ -9,9 +9,9 @@ const FlightCard = ({ id, name, success, details, date_local, status, loading, i
   const [onHold, setOnHold] = useState(false);
   const navigate = useNavigate();
 
-  const dragStartHandler = (e: any) => {
+  const dragStartHandler = (e: React.DragEvent<HTMLDivElement>) => {
     e.dataTransfer.setData('cardInfo', JSON.stringify({ id, status }));
-    e.target.className += ' ohhold';
+    (e.target as HTMLInputElement).className += s.onHold;
     setTimeout(() => {
       setOnHold(true);
     }, 0);
@@ -21,11 +21,11 @@ const FlightCard = ({ id, name, success, details, date_local, status, loading, i
     setOnHold(false);
   };
 
-  const onDragOverHandler = (e: any) => {
+  const onDragOverHandler = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
-    if (e.target.className === 'card') {
+    if ((e.target as HTMLInputElement).className === 'card') {
       setTimeout(() => {
-        e.target.className = 'card anotherCardOnTop';
+        (e.target as HTMLInputElement).className = 'card anotherCardOnTop';
       }, 0);
     }
   };
@@ -34,11 +34,11 @@ const FlightCard = ({ id, name, success, details, date_local, status, loading, i
     navigate(`/flight/${id}`);
   };
 
-  const onDragLeaveHandler = (e: any) => {
+  const onDragLeaveHandler = (e: React.DragEvent<HTMLDivElement>) => {
     resetClassName(e);
   };
 
-  const onDropHandler = (e: any) => {
+  const onDropHandler = (e: React.DragEvent<HTMLDivElement>) => {
     resetClassName(e);
     /**
      TODO: Remove all anotherCardOnTop classnames
@@ -46,14 +46,14 @@ const FlightCard = ({ id, name, success, details, date_local, status, loading, i
      */
   };
 
-  const resetClassName = (e: any) => {
+  const resetClassName = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
     const isCard =
-      e.target.className === 'card' ||
-      e.target.className === 'card anotherCardOnTop';
+      (e.target as HTMLInputElement).className === 'card' ||
+      (e.target as HTMLInputElement).className === 'card anotherCardOnTop';
     if (isCard) {
       setTimeout(() => {
-        e.target.className = 'card';
+        (e.target as HTMLInputElement).className = 'card';
       }, 0);
     }
   };
@@ -61,7 +61,7 @@ const FlightCard = ({ id, name, success, details, date_local, status, loading, i
   return (
     <div
       id={id}
-      className={`card ${onHold ? 'hidden' : ''}`}
+      className={`${s.card} ${onHold ? s.hidden : ''}`}
       draggable={status !== 'ended'}
       onDragStart={dragStartHandler}
       onDragEnd={dragEndHandler}
@@ -71,11 +71,11 @@ const FlightCard = ({ id, name, success, details, date_local, status, loading, i
       onClick={onClickHandler}
     >
       {loading ? <Skeleton className={s.skeleton} active /> : <>
-        <div className="cardTitle">
+        <div className={s.cardTitle}>
           {name}
-          <LaunchImage icon={icon} className={s.cardPatch}/>
+          <LaunchImage icon={icon} className={s.cardPatch} />
         </div>
-        <div className="cardFooter">
+        <div className={s.cardFooter}>
           {details ? <div className={s.details}>{details}</div> :
             status === 'upcoming' ? 'Awaiting for flight' :
               status === 'reserved' ? 'You have booked this flight. Pack your bags 😉' : 'No description'

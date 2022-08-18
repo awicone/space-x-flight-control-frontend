@@ -4,12 +4,6 @@
   text-overflow: ellipsis;
 }
 
-.cardFooter {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 1rem;
-}
-
 .skeleton {
   width: 33vw;
 }
@@ -17,4 +11,49 @@
 .cardPatch {
   max-width: 46px;
   font-size: 36px;
+}
+
+.card {
+  padding: 1rem 1.2rem;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 10px 17px -10px rgba(0, 0, 0, 0.59);
+  margin-bottom: 10px;
+  position: relative;
+  cursor: pointer;
+  transition: .2s ease-out;
+  border: 1px solid transparent;
+}
+
+.card:hover {
+  background: #ededed;
+  border-color: #d8d8d8;
+}
+
+.hidden {
+  display: none;
+}
+
+.cardTitle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.8rem;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.cardFooter {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.onHold {
+  border: 2px solid #fff;
+  transform: rotateZ(-2deg);
+}
+
+.flightStatusInfo {
+  margin-left: 1rem;
 }

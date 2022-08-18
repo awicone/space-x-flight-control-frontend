@@ -67,11 +67,11 @@ const FlightPage = () => {
             <Text strong>
               https://github.com/awicone
             </Text>
-          .
+            .
           </Paragraph>
         </Typography>
       </div> : <div className={s.loaderContainer}>
-        <Spin size={'large'}/>
+        <Spin size={'large'} />
       </div>
   );
 };

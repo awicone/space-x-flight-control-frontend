@@ -1,0 +1,16 @@
+.trelloPage {
+  display: flex;
+  width: 100%;
+}
+
+.appContentArea {
+  width: 100%;
+}
+
+.wrapLists {
+  display: grid;
+  grid-auto-columns: 33%;
+  grid-auto-flow: column;
+  grid-gap: 7px;
+  padding-bottom: 0.5rem;
+}

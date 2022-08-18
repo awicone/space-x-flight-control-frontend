@@ -4,12 +4,15 @@ import FlightBoard from '../../components/FlightBoard/FlightBoard';
 import { Column } from '../../types/ColumnList';
 import { initialLaunches, initialLists } from '../../components/FlightBoard/FlightBoard.contant';
 import api from '../../api/api';
+import s from './FlightControlDashboard.module.css';
 import { Launches, LaunchStatus } from '../../types/Launches';
 import { Launch } from '../../types/Lounch';
 import { CardInfo } from '../../types/CardInfo';
 import { AxiosResponse } from 'axios';
 import { message, Modal } from 'antd';
 import { FlightCard } from '../../components/FlightCard/FlightCard.constant';
+import { Simulate } from 'react-dom/test-utils';
+import error = Simulate.error
 
 type CachedCardInfo = {
   cardInfo: CardInfo,
@@ -63,7 +66,7 @@ const FlightControlDashboard = () => {
         });
       });
 
-      const result = uniqueResultOne.concat(uniqueResultTwo);
+      const resultArray = uniqueResultOne.concat(uniqueResultTwo);
 
       setLaunches({
         ended: pastLaunches.data,
@@ -82,15 +85,19 @@ const FlightControlDashboard = () => {
 
       setLaunches({
         ended: pastLaunches.data,
-        upcoming: result,
+        upcoming: resultArray,
         reserved: crossedLaunches
       });
     };
 
     try {
       getLaunches();
-    } catch (e: any) {
-      console.log('error');
+    } catch (e) {
+      let errorMessage = 'Unknown Error';
+      if (error instanceof Error) {
+        errorMessage = error.message;
+        message.error(errorMessage, 2);
+      }
     } finally {
       setTimeout(() => {
         setDataFetched(true);
@@ -194,7 +201,7 @@ const FlightControlDashboard = () => {
   };
 
   return (
-    <div className="trello_page">
+    <div className={s.trelloPage}>
       <Modal
         title="Cancel confirmation"
         visible={isBookingCancellationModalOpened}
@@ -205,10 +212,10 @@ const FlightControlDashboard = () => {
       >
         <p>Are you sure you want to cancel your booking?</p>
       </Modal>
-      <div className="app-content-area">
-        {<main className="app-board">
-          <section className="board-body">
-            <div className="wrap-lists">
+      <div className={s.appContentArea}>
+        {<main>
+          <section>
+            <div className={s.wrapLists}>
               {columnList.map((l: Column) => (
                 <FlightBoard
                   data={launches[l.status]}

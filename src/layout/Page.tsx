@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import s from './Page.module.scss';
 import Header from '../components/Header/Header';
 
-const Page = ({ children }: any) => {
+interface PageProps {
+  children: ReactNode
+}
+const Page = (props: PageProps) => {
   return (
     <div className={s.pageContainer}>
       <Header />
-      {children}
+      {props.children}
     </div>
   );
 };

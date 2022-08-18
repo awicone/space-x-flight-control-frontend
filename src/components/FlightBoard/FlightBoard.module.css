@@ -1,0 +1,15 @@
+.listTitle {
+  justify-content: center;
+  display: flex;
+  margin: 0;
+}
+
+.boardContentArea {
+  margin-top: 1rem;
+  min-height: 300px;
+  padding: 10px;
+  border: 1px solid #dadada;
+  border-radius: 10px;
+  height: calc(100vh - 172px);
+  overflow: scroll;
+}

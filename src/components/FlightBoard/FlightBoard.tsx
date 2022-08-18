@@ -3,6 +3,7 @@ import FlightCard from '../FlightCard/FlightCard';
 import { Launch } from '../../types/Lounch';
 import { LaunchStatus } from '../../types/Launches';
 import { CardInfo } from '../../types/CardInfo';
+import s from './FlightBoard.module.css';
 
 interface FlightBoardProps {
   data: Launch[],
@@ -11,37 +12,39 @@ interface FlightBoardProps {
   onChange: (cardInfo: CardInfo, status: LaunchStatus, targetCardId: string) => Promise<void>,
   loading?: boolean
 }
+
 const FlightBoard = ({ data, title, status, onChange, loading }: FlightBoardProps) => {
   const sorted = useMemo(() => {
     return data.sort((a: Launch, b: Launch) => a.order - b.order);
   }, [data]);
 
-  const onDragEnterHandler = (e: any) => {
+  const onDragEnterHandler = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
   };
-  const onDragOverHandler = (e: any) => {
+  const onDragOverHandler = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
-    if (e.target.className === 'boardContentArea') {
+    if ((e.target as HTMLInputElement).className === 'boardContentArea') {
       setTimeout(() => {
-        e.target.className = 'boardContentArea hovered';
+        (e.target as HTMLInputElement).className = 'boardContentArea hovered';
       }, 0);
     }
   };
-  const onDragLeaveHandler = (e: any) => {
+  const onDragLeaveHandler = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
-    if (e.target.className === 'boardContentArea hovered') {
+    if ((e.target as HTMLInputElement).className === 'boardContentArea hovered') {
       setTimeout(() => {
-        e.target.className = 'boardContentArea';
+        (e.target as HTMLInputElement).className = 'boardContentArea';
       }, 0);
     }
   };
-  const onDropHandler = (e: any) => {
+  const onDropHandler = async (e: React.DragEvent<HTMLDivElement>) => {
     const cardInfo = JSON.parse(e.dataTransfer.getData('cardInfo'));
-    const targetCardId = e.target.id;
-    onChange(cardInfo, status, targetCardId);
-    if (e.target.className === 'boardContentArea hovered') {
+    const targetCardId = (e.target as HTMLInputElement).id;
+    await onChange(cardInfo, status, targetCardId);
+
+    if ((e.target as HTMLInputElement).className === 'boardContentArea hovered') {
       setTimeout(() => {
-        e.target.className = 'boardContentArea';
+        (e.target as HTMLInputElement).className = 'boardContentArea';
       }, 0);
     }
   };
@@ -64,18 +67,16 @@ const FlightBoard = ({ data, title, status, onChange, loading }: FlightBoardProp
   };
 
   return (
-    <div className="board-col">
-      <div className="list">
-        <h4 className="list-title">{title}</h4>
-        <div
-          className="boardContentArea"
-          onDragEnter={onDragEnterHandler}
-          onDragOver={onDragOverHandler}
-          onDragLeave={onDragLeaveHandler}
-          onDrop={onDropHandler}
-        >
-          {renderCards()}
-        </div>
+    <div>
+      <h4 className={s.listTitle}>{title}</h4>
+      <div
+        className={s.boardContentArea}
+        onDragEnter={onDragEnterHandler}
+        onDragOver={onDragOverHandler}
+        onDragLeave={onDragLeaveHandler}
+        onDrop={onDropHandler}
+      >
+        {renderCards()}
       </div>
     </div>
   );
