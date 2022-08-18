@@ -1,6 +1,6 @@
 import React from 'react';
 import s from './App.module.css';
-import { AppRoutes } from './Routes';
+import { AppRoutes } from '../../Routes';
 
 const App = () => {
   return (
