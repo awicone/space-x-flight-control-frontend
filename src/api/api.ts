@@ -7,7 +7,7 @@ const urls = {
     past: '/past',
     upcoming: '/upcoming'
   },
-  launch: '/launches/',
+  launch: '/launches',
   booking: '/reserved'
 };
 
