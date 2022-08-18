@@ -48,11 +48,10 @@ const FlightPage = () => {
     dataFetched ?
       <div className={s.flightPageContainer}>
         <Typography>
-          <div className={s.sss}>
+          <div className={s.titleWithPatch}>
             <Title>{flight.name}</Title>
             <LaunchImage className={s.patchIcon} icon={flight?.links?.patch?.large} />
           </div>
-
           <Paragraph>
             <Title>Flight details</Title>
             {flight.details}
@@ -64,17 +63,16 @@ const FlightPage = () => {
             <Title>Result: {flight.success === true ? 'success ✅' : flight.success === false ? 'failed ❌' : 'waiting for a flight 🕐'}</Title>
           </Paragraph>
           <Paragraph>
-          After massive project practice and summaries, Ant Design, a design language for background
-          applications, is refined by Ant UED Team, which aims to{' '}
+            this app was created by: {' '}
             <Text strong>
-            uniform the user interface specs for internal background projects, lower the unnecessary
-            cost of design differences and implementation and liberate the resources of design and
-            front-end development
+              https://github.com/awicone
             </Text>
           .
           </Paragraph>
         </Typography>
-      </div> : <Spin size={'large'}/>
+      </div> : <div className={s.loaderContainer}>
+        <Spin size={'large'}/>
+      </div>
   );
 };
 export default FlightPage;

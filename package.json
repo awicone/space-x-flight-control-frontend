@@ -8,7 +8,6 @@
   "license": "MIT",
   "scripts": {
     "start": "webpack serve --port 3000",
-    "start-server": "node server.js",
     "build": "NODE_ENV=production webpack",
     "lint": "eslint --fix --ext .js,.jsx,.tsx,ts .",
     "lint:fix": "npm run lint -- --fix",
@@ -38,6 +37,7 @@
     "eslint-webpack-plugin": "^3.2.0",
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.5.0",
+    "prettier": "^2.7.1",
     "sass-loader": "^13.0.2",
     "style-loader": "^3.3.1",
     "ts-loader": "^9.3.1",
@@ -49,9 +49,7 @@
   "dependencies": {
     "antd": "^4.22.5",
     "axios": "^0.27.2",
-    "json-server": "^0.17.0",
     "normalize.css": "^8.0.1",
-    "prettier": "^2.7.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.3.0",
