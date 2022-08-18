@@ -7,8 +7,7 @@
   "author": "awicone <awiconet@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "webpack serve --port 3000",
-    "start-server": "node server.js",
+    "start": "node server.js",
     "build": "NODE_ENV=production webpack",
     "lint": "eslint --fix --ext .js,.jsx,.tsx,ts .",
     "lint:fix": "npm run lint -- --fix",
